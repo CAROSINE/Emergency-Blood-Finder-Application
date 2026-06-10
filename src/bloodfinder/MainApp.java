@@ -6,7 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class MainApp extends JFrame {
+public class MainApp extends JFrame 
+{
     private MainController mainController;
     private DonorController donorController;
     private RecipientController recipientController;
@@ -33,7 +34,8 @@ public class MainApp extends JFrame {
     private static final Color WARNING_ORANGE = new Color(255, 193, 7);      // Warning amber
     private static final Color DANGER_RED = new Color(220, 53, 69);          // Danger red
     
-    public MainApp() {
+    public MainApp() 
+    {
         mainController = new MainController();
         donorController = new DonorController(mainController);
         recipientController = new RecipientController(mainController);
@@ -42,16 +44,19 @@ public class MainApp extends JFrame {
         initializeUI();
     }
     
-    private void initializeUI() {
+    private void initializeUI() 
+    {
         setTitle("Emergency Blood Finder System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1400, 850);
         setLocationRelativeTo(null);
         
         // Set modern Look and Feel
-        try {
+        try
+        {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
+        } catch (Exception e) 
+            {
             e.printStackTrace();
         }
         
@@ -76,10 +81,13 @@ public class MainApp extends JFrame {
         setVisible(true);
     }
     
-    private JPanel createHeader() {
-        JPanel header = new JPanel(new BorderLayout()) {
+    private JPanel createHeader() 
+    {
+        JPanel header = new JPanel(new BorderLayout()) 
+        {
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g)
+            {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -95,7 +103,8 @@ public class MainApp extends JFrame {
                 // Decorative blood drops
                 g2d.setColor(new Color(255, 255, 255, 40));
                 int[] dropX = {80, 200, 320, getWidth()-320, getWidth()-200, getWidth()-80};
-                for (int x : dropX) {
+                for (int x : dropX)
+                    {
                     g2d.fillOval(x, 15, 10, 10);
                     g2d.fillOval(x+3, 22, 4, 6);
                 }
@@ -168,7 +177,8 @@ public class MainApp extends JFrame {
 
     //////////////// COLLAPSIBLE MENU SECTION ////////////////
     
-    private JPanel createMenuContainer() {
+    private JPanel createMenuContainer() 
+    {
         JPanel container = new JPanel(new BorderLayout());
         container.setBackground(SIDEBAR_BG);
         
@@ -185,7 +195,8 @@ public class MainApp extends JFrame {
         return container;
     }
     
-    private JButton createToggleButton() {
+    private JButton createToggleButton()
+    {
         JButton btn = new JButton("☰  Dashboard");
         btn.setPreferredSize(new Dimension(280, 65));
         btn.setBackground(SIDEBAR_BG);
@@ -203,14 +214,17 @@ public class MainApp extends JFrame {
         btn.addActionListener(e -> toggleMenu());
         
         // Hover effect
-        btn.addMouseListener(new MouseAdapter() {
+        btn.addMouseListener(new MouseAdapter() 
+                             {
             @Override
-            public void mouseEntered(MouseEvent e) {
+            public void mouseEntered(MouseEvent e) 
+                                 {
                 btn.setBackground(HOVER_BG);
             }
             
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(MouseEvent e) 
+                                 {
                 btn.setBackground(SIDEBAR_BG);
             }
         });
@@ -218,7 +232,8 @@ public class MainApp extends JFrame {
         return btn;
     }
     
-    private void toggleMenu() {
+    private void toggleMenu()
+    {
         isMenuVisible = !isMenuVisible;
         menuPanel.setVisible(isMenuVisible);
         toggleButton.setText(isMenuVisible ? "☰  Dashboard" : "☰");
@@ -226,7 +241,8 @@ public class MainApp extends JFrame {
         repaint();
     }
     
-    private JPanel createMenuPanel() {
+    private JPanel createMenuPanel() 
+    {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(SIDEBAR_BG);
         panel.setBorder(BorderFactory.createEmptyBorder(15, 0, 20, 0));
@@ -301,7 +317,8 @@ public class MainApp extends JFrame {
         return panel;
     }
     
-    private JButton createMenuButton(String text, String icon, ActionListener action) {
+    private JButton createMenuButton(String text, String icon, ActionListener action) 
+    {
         JButton btn = new JButton();
         btn.setLayout(new BorderLayout(12, 0));
         btn.setPreferredSize(new Dimension(256, 52));
